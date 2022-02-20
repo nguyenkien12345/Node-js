@@ -1,0 +1,43 @@
+Thay đổi routes  
+
+app.get('/', (req, res) => {
+    res.render('home');
+})
+
+// Truyền trực tiếp trên đường dẫn
+app.get('/search', (req, res) => {
+    //console.log(req.query.ref + req.query.q + req.query.author);
+    res.render('search');
+})
+
+// Truyền dữ liệu qua form
+app.post('/search', (req, res) => {
+    // console.log(req.body.name + req.body.age + req.body.address + req.body.gender)
+    res.send('');
+    res.json(req.body);
+})  
+
+// app.get('/news', (req, res) => {
+//     res.render('news');
+// })
+
+Cách dùng CallBack
+index(req, res, next) {
+    Club.find({}, function(err,clubs){
+        // Nếu không có lỗi
+        if(!err){
+            res.json(clubs);
+            return;
+        }
+        // Nếu có lỗi
+        next(err);
+    })
+}
+
+Cách dùng Promise
+index(req, res, next) {
+    Club.find({})
+    .then(clubs => res.json(clubs))
+    // Thằng catch nhận 1 cái function và trả về (error tay trái) sau đó ta lại gọi funtion next là truyền vào erro (error tay phải) thì nó hơi thừa
+    .catch(error => next(error));
+}

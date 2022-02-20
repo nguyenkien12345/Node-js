@@ -1,0 +1,73 @@
++ Cách ghi 1 (dài dòng) (Các file router)
+*********************************************************************
++ (file home.router.js)
+const express = require('express');
+const router = express.Router();
+// Import Controller
+const homeController = require('../controllers/home.controller');
+
+router.get('/about', homeController.about);
+
+router.get('/contact', homeController.contact);
+
+router.get('/', homeController.home);
+
+module.exports = router;
+
++ (file club.router.js)
+const express = require('express');
+const router = express.Router();
+// Import Controller
+const clubController = require('../controllers/club.controller');
+
+router.get('/:id', clubController.getDetailClub);
+
+router.get('/', clubController.getAllClub);
+
+module.exports = router;
+*********************************************************************
+
+
+
++ Cách ghi 2 (ngắn gọn) (Các file router)
+*********************************************************************
++ (file home.router.js)
+module.exports = function(router){
+    const homeController = require('../controllers/home.controller');
+
+    router.get('/about', homeController.about);
+
+    router.get('/contact', homeController.contact);
+
+    router.get('/', homeController.home);
+}
+
++ (file club.router.js)
+module.exports = function(router){
+    const clubController = require('../controllers/club.controller');
+
+    router.get('/clubs/:id', clubController.getDetailClub);
+    
+    router.get('/clubs', clubController.getAllClub);
+}
+*********************************************************************
+
+*********************************************************************
+Cách ghi 1 (file index.js) (Áp dụng cho cách ghi dài dòng của các file router)
+// Import Router
+const homeRouter = require('./app/routes/home.router');
+const clubRouter = require('./app/routes/club.router');
+
+// Use Router
+app.use('/clubs',clubRouter);
+app.use('/',homeRouter);
+
+Cách ghi 2 (file index.js) (Áp dụng cho cách ghi ngắn gọn của các file router)
+require('./app/routes/home.router')(app);
+require('./app/routes/club.router')(app);
+*********************************************************************
+
+*********************************************************************
+// Cấu hình body-parser (Lấy được data form từ req.body) 
+// (Lưu ý Cấu hình body-parser phải luôn luôn khai báo trên đầu trước các router)
+*********************************************************************

@@ -1,0 +1,90 @@
+<div class='mt-4'>
+    <div>
+        <h3>Các câu lạc bộ của tôi</h3>
+        <a href='/me/trash/clubs'>Thùng rác</a>
+    </div>
+    <table class='table mt-4'>
+        <thead>
+            <tr>
+            <th scope='col'>ID</th>
+            <th scope='col'>Câu lạc bộ</th>
+            <th scope='col'>Biệt danh</th>
+            <th scope='col'>Nhà tài trợ</th>
+            <th scope='col'>Thời gian</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each clubs}}
+                <tr>
+                    <th scope='row'>{{sum @index 1}}</th> 
+                    {{!-- sum index 1: Ta gọi hàm sum đã định nghĩa trong index.js, index và 1 chính là 2 tham số truyền vào hàm sum này. 
+                    index (luôn bắt đầu từ 0) tượng trưng cho tham số a, 1 tượng trưng cho tham số b
+                    --}}
+                    {{!-- this lấy dữ liệu có trong mongo db combass --}}
+                    <td>{{this.Name}}</td>
+                    <td>{{this.Donors}}</td>
+                    <td>{{this.Nickname}}</td>
+                    <td>{{this.createdAt}}</td>
+                    <td>
+                        <a href='/clubs/{{this._id}}/edit' class='btn btn-success'>Sửa</a>
+                        <a href='/clubs/{{this._id}}' class='btn btn-warning' data-id='{{this._id}}' data-toggle='modal' data-target='#deleteClub'>Xoá</a> {{!-- data-id Lấy ra id của clb cần xoá --}}
+                    </td>
+                </tr>
+            {{else}}
+                <tr>
+                  <td colspan='5' class='text-center'>
+                    Bạn chưa sở hửu một câu lạc bộ nào
+                    <a href='/clubs/create'>Thêm câu lạc bộ</a>
+                  </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<!-- Confirm delete club -->
+<div class='modal fade' id='deleteClub' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='exampleModalLabel'>Xoá Câu Lạc Bộ</h5>
+        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body'>
+        Bạn có chắc chắn muốn xoá câu lạc bộ này? 
+      </div>
+      <div class='modal-footer'>
+        <button id='btnDeleteClub' type='button' class='btn btn-primary'>Xoá</button>
+        <button type='button' class='btn btn-secondary' data-dismiss='modal'>Huỷ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Delete hidden form: mục đích có form này là ta muốn nó submit lên đường dẫn /clubs/:id --}}
+<form method='POST' name='deleteClubForm'></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded',function(){ // Khi mà cái dom đã được tải xong hoàn toàn
+        var clubId;
+        var deleteForm = document.forms['deleteClubForm'];
+        var btnDelete = document.getElementById('btnDeleteClub');
+
+        // When dialog confirm clicked
+        $('#deleteClub').on('show.bs.modal', function(e){
+            var button = $(e.relatedTarget);
+            clubId = button.data('id') // Lấy ra id của clb được click
+        })
+
+        // When delete club btn clicked
+        btnDelete.onclick = function(){
+            // Set lại thuộc tính action của form
+            deleteForm.action = '/clubs/' + clubId + '?_method=DELETE';
+            // submit form
+            deleteForm.submit();
+        }
+    })
+</script>

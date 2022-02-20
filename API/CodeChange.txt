@@ -1,0 +1,66 @@
++++++++++++++++++++++++++++++++ Bài 3 (Thiết lập Header) ++++++++++++++++++++++++++++++
+// res.setHeader('Content-type', 'text/plain');
+// res.write("HELLO NGUYỄN TRUNG KIÊN");
+
+// res.setHeader('Content-type', 'text/html');
+// res.write("<h1>HELLO LIVERPOOL FC</h1>");
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++ Bài 4 (Thiết lập Status Code) +++++++++++++++++++++++
++ Cách viết dài dòng: 
+res.setHeader('Content-type', 'application/json');
+res.setHeader('X-Powered-By', 'Node.js');
+res.statusCode = 404;
+
++ Cách viết ngắn gọn:
+res.writeHead(404,{
+    'Content-type': 'application/json',
+    'X-Powered-By': 'Node.js'
+})
+
++ Ví dụ nếu status code không phải là 400 thì ta trả về:
+const CLUBS = [
+    {id: 1, name: 'Liverpool Fc'},
+    {id: 2, name: 'Chelsea Fc'},
+    {id: 3, name: 'Arsenal Fc'},
+]
+
+ res.end(
+     JSON.stringify({
+         success: true,
+         data: CLUBS
+     })
+ );
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++ Full Code Bài 4 (file server.js (Bài 5 code mới hoàn toàn)) ++++++++++++++++++++++++++++++++
+const http = require('http');
+
+const server = http.createServer((req,res) => {
+    res.writeHead(404,{
+        'Content-type': 'application/json',
+        'X-Powered-By': 'Node.js'
+    })
+    
+    res.end(
+        JSON.stringify({
+            success: false,
+            error: 'Page Not Found',
+            data: null
+        })
+    );
+})
+
+const PORT = 5000;
+
+server.listen(PORT, () => {
+    console.log(`Server is running on ${PORT}`);
+});
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Nhận về 1 file html (__dirname: Chính là thư mục project đang đứng)
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + "/index.html");
+})
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

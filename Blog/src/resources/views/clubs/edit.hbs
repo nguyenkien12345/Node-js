@@ -1,0 +1,25 @@
+<div class='mt-4'>
+    <h2>Cập nhật khoá học</h2>
+    {{!-- Vì submit form chỉ áp dụng cho phương thức GET và POST nên nếu muốn dùng PATCH và PUT thì phải ghi đè với ?_method=Tên Phương Thức --}}
+    {{!-- Form sẽ vẫn submit đi với phương thức là POST nhưng phía server sẽ được middleware nhận được phương thức với params là PUT và ghi đè phương thức là PUT --}}
+    <form method='POST' action='/clubs/{{club._id}}?_method=PUT'>
+        <div class='form-group'>
+            <label for='Name'>Name</label>
+            <input type='text' class='form-control' id='Name' name='Name' value='{{club.Name}}'>
+        </div>
+        <div class='form-group'>
+            <label for='Donors'>Donors</label>
+            <input type='text' class='form-control' id='Donors' name='Donors' value='{{club.Donors}}'>
+        </div>
+        <div class='form-group'>
+            <label for='Nickname'>Nickname</label>
+            <input type='text' class='form-control' id='Nickname' name='Nickname' value='{{club.Nickname}}'>
+        </div>
+        <div class='form-group'>
+            <label for='VideoID'>VideoID</label>
+            <input type='text' class='form-control' id='VideoID' name='VideoID' value='{{club.VideoID}}'>
+        </div>
+        <button type='submit' class='btn btn-primary'>Lưu lại</button>
+    </form>
+</div>
+{{!-- Các thẻ name phải có giá trị giống y chang như models --}}

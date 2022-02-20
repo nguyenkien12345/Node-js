@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css"> 
+    <!-- 
+        Chúng ta đã khai báo đường dẫn tĩnh trong server.js. 
+        Nếu app.use('/assets',express.static('assets')) thì ta khai báo ở đây là href="assets/css/style.css", 
+        còn nếu app.use(express.static('assets')) thì ta khai báo ở đây là href="/css/style.css"  
+    -->
+    <title>HOME</title>
+</head>
+
+<body>
+    <%- include ('partials/navbar'); -%>
+    <h1>Home</h1>
+</body>
+</html>

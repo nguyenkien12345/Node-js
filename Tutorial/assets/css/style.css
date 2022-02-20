@@ -1,0 +1,34 @@
+body{
+    background-color: skyblue;
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+    padding: 30px;
+}
+
+h1{
+    font-size: 48px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+h2{
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+p, li{
+    font-size: 16px;
+    text-align: center;
+}
+
+li {
+    list-style: none;
+}
+
+label {
+    display: flex;
+    width: 90px;
+}

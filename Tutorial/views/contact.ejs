@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css"> 
+    <!-- 
+        Chúng ta đã khai báo đường dẫn tĩnh trong server.js. 
+        Nếu app.use('/assets',express.static('assets')) thì ta khai báo ở đây là href="assets/css/style.css", 
+        còn nếu app.use(express.static('assets')) thì ta khai báo ở đây là href="/css/style.css"  
+    -->
+    <title>HOME</title>
+</head>
+
+<body>
+    <%- include ('partials/navbar'); -%>
+    <h1>Page Contact</h1>
+    <p>You want to contact our team! Please fill this form</p>
+    <form action="" id="contact-form" method="POST">
+        <label for="name">Name</label>
+        <input type="text" name="name" placeholder="Enter Name: "/>
+        <br/>
+
+        <label for="age">Age</label>
+        <input type="number" name="age" placeholder="Enter Age: "/>
+        <br/>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Enter Email: "/>
+        <br/>
+
+        <label for="address">Address</label>
+        <input type="text" name="address" placeholder="Enter Address: "/>
+        <br/>
+
+        <input type="submit" value="Send"/>
+    </form>
+</body>
+</html>

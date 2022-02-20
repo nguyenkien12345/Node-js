@@ -1,0 +1,83 @@
+Buffers && Stream 
+
+Buffers
+
+- Temporary storage spot for a chunk of data that is being transferred from one place to another
+(Vị trí lưu trữ tạm thời cho một phần dữ liệu đang được chuyển từ nơi này sang nơi khác)
+
+- The buffer is filled with data, then passed along
+(Bộ đệm được lấp đầy bởi dữ liệu, sau đó được chuyển đi cùng)
+
+- Transfer small chunks of data at a time
+(Chuyển các phần nhỏ dữ liệu cùng một lúc)
+
+Tổng kết
+
+Buffers là 1 không gian lưu trữ tạm và nó chứa những mẫu data nhỏ sau đó nó sẽ chuyển đến 1 nơi khác khi đầy. Và cái việc chuyển các data nhỏ này sẽ tạo ra 1 hiệu suất rất là cao 
+khi mà nó chuyển các data trong cùng 1 thời gian. Đó là điểm mạnh tại sao nodejs có thể real time.
+
+Streams
+
+- Can create streams in Node.js to transfer data
+(Có thể tạo luồng trong Node.js để truyền dữ liệu)
+
+- Increase performance
+(Tăng hiệu suất)
+
+Tổng kết
+
+Trong quá trình chúng ta cắt nhỏ data (có thể sẽ có nhiều loại dữ liệu khác nhau) và đưa vào trong buffers sau đó chúng ta chuyển các cái data 
+(ai sẽ là người phụ trách quá trình chuyển) này đi. Stream chính là 1 cái luồng dữ liệu nó giúp trong quá trình đọc file, ghi file hay rất là nhiều quá trình khác hoạt động
+1 cách liên tục giúp tăng hiệu suất.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Expresss
+
+- Easy and flexible routing system
+(Hệ thống định tuyến dễ dàng và linh hoạt)
+
+- Integrates with many templating engines
+(Tích hợp với nhiều công cụ tạo khuôn mẫu)
+
+- Contains a middleware framework
+(Chứa một khung phần mềm trung gian)
+
+- Gồm các phương thức GET,POST,PUT,DELETE
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Templating Engines
+
+<!-- <%= %> Hiển thị dữ liệu (có dấu =) -->
+<!-- <% %> Nối dữ liệu (không có dấu =) -->
+
+<%    'Scriptlet' tag, for control-flow, no output
+<%    Thẻ 'Scriptlet', cho luồng điều khiển, không có đầu ra
+
+<%_   'Whitespace Slurping' Scriptlet tag, strips all whitespace before it
+<%_   Thẻ Scriptlet 'Whitespace Slurping', loại bỏ tất cả khoảng trắng trước nó
+
+<%=   Outputs the value into the template (escaped)
+<%=   Xuất giá trị vào mẫu (thoát)
+
+<%-   Outputs the unescaped value into the template
+<%-   Xuất giá trị không thoát vào mẫu
+
+<%#   Comment tag, no execution, no output
+<%#   Thẻ nhận xét, không thực thi, không có đầu ra
+
+<%%   Outputs a literal
+<%%   Xuất ra một ký tự
+
+%%>   Outputs a literal
+%%>   Xuất ra một ký tự
+
+%>    Plain ending tag
+%>    Thẻ kết thúc thuần túy
+
+-%>   Trim-mode ('newline slurp') tag, trims following newline
+-%>   Thẻ Trim-mode ('newline slurp'), cắt theo dòng mới
+
+_%>   'Whitespace Slurping' ending tag, removes all whitespace after it
+_%>   Thẻ kết thúc 'Whitespace Slurping', xóa tất cả khoảng trắng sau nó

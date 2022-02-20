@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css"> 
+    <!-- 
+        Chúng ta đã khai báo đường dẫn tĩnh trong server.js. 
+        Nếu app.use('/assets',express.static('assets')) thì ta khai báo ở đây là href="assets/css/style.css", 
+        còn nếu app.use(express.static('assets')) thì ta khai báo ở đây là href="/css/style.css"  
+    -->
+    <title>REGISTER</title>
+</head>
+
+<body>
+    <h1>Welcome To My Website For NTK Team Witd ID = <%= id %></h1> 
+    <p>Name: <%= information.name %></p>
+    <p>Age: <%= information.age %></p>
+    <p>Email: <%= information.email %></p>
+    <p>Address: <%= information.address %></p>
+    <h2>Hobbies</h2>
+    <ul>
+        <% information.hobbies.forEach(function(item){ %>
+            <li><%= item %></li>
+        <% }); %>
+    </ul>
+</body>
+</html>

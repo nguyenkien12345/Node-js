@@ -1,0 +1,14 @@
+<div class="mt-4">
+    <div class="row">
+        <div class="col-lg-3">
+            <button>Chơi ngay</button>
+        </div>
+        <div class="col-lg-9">
+            <h2>{{club.Name}}</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{club.VideoID}}" title={{club.Name}} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>{{club.Donors}}</p>
+            <p>{{club.Nickname}}</p>
+            <img width="300px" height="300px" src={{club.Thumbnail}} alt={{club.Name}}>
+        </div>
+    </div>
+</div>

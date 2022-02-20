@@ -1,0 +1,22 @@
+http://expressjs.com/en/4x/api.html#res.json
+https://github.com/Automattic/mongoose
+
+- Nên tạo ra 1 folder src để chứa toàn bộ source code mà ta viết
+
+- Trong Template Engine, khai báo folder views (Phải đặt tên là views) và trong views khai báo partials (Phải đặt tên là partials) để chứa các thành phần chung như header,footer,navbar.
+
+- node-sass src/resources/scss/ --output src/public/css/--watch: Thay vì lắng nghe sự thay đổi theo file thì ta sẽ lắng nghe sự thay đổi theo folder
+
+- Làm đẹp code bằng prettier, lint-staged, husky
+
+- Khi git add 1 file nào đó, sau đó git status thì ta thấy file vừa add đó nó đã được staged (chuyển từ màu đỏ thành màu xanh). Khi nó staged rồi thì khi
+chạy câu lệnh lint-staged nó sẽ kiểm tra thấy file của chúng ta có sự thay đổi lúc đó nó sẽ sửa lại theo quy chuẩn prettier mà ta đặt ra
+=> Công dụng của lint-staged là dùng để chạy những file đã được add vào git (chuyển từ màu đỏ thành màu xanh) và phải match với cái pattern mà chúng ta 
+đã defined
+
+- Mỗi khi chúng ta commit code bằng husky thì nó sẽ tự chạy và chỉnh sửa lại code mà ko cần phải chạy lệnh build riêng
+"husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },

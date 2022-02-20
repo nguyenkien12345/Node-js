@@ -1,0 +1,111 @@
+<div class='mt-4'>
+    <div>
+      <a href='/me/stored/clubs'>Danh sách câu lạc bộ</a>
+      <h3>Các câu lạc bộ đã xoá</h3>
+    </div>
+    <table class='table mt-4'>
+        <thead>
+            <tr>
+            <th scope='col'>ID</th>
+            <th scope='col'>Câu lạc bộ</th>
+            <th scope='col'>Biệt danh</th>
+            <th scope='col'>Nhà tài trợ</th>
+            <th scope='col'>Thời gian</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each clubs}}
+                <tr>
+                    <th scope='row'>{{sum @index 1}}</th> 
+                    {{!-- sum index 1: Ta gọi hàm sum đã định nghĩa trong index.js, index và 1 chính là 2 tham số truyền vào hàm sum này. 
+                    index (luôn bắt đầu từ 0) tượng trưng cho tham số a, 1 tượng trưng cho tham số b
+                    --}}
+                    {{!-- this lấy dữ liệu có trong mongo db combass --}}
+                    <td>{{this.Name}}</td>
+                    <td>{{this.Donors}}</td>
+                    <td>{{this.Nickname}}</td>
+                    <td>{{this.createdAt}}</td>
+                    <td>
+                        {{!-- data-id Lấy ra id của clb cần khôi phục, cần xoá --}}
+                        <a href='' class='btn btn-success btnRestoreClub' data-id='{{this._id}}'>Khôi phục</a>
+                        <a href='' class='btn btn-warning btnForceDeleteClub' data-id='{{this._id}}' data-toggle='modal' data-target='#deleteClub'>Xoá vĩnh viễn</a> 
+                    </td>
+                </tr>
+            {{else}}
+                <tr>
+                  <td colspan='5' class='text-center'>
+                    Thùng rác trống
+                    <a href='/me/stored/clubs'>Danh sách câu lạc bộ</a>
+                  </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<!-- Confirm delete club -->
+<div class='modal fade' id='deleteClub' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='exampleModalLabel'>Xoá Câu Lạc Bộ</h5>
+        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body'>
+        Hành động này không thể khôi phục. Bạn có chắc chắn muốn xoá câu lạc bộ này? 
+      </div>
+      <div class='modal-footer'>
+        <button id='btnDeleteClub' type='button' class='btn btn-primary'>Xoá</button>
+        <button type='button' class='btn btn-secondary' data-dismiss='modal'>Huỷ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Delete form --}}
+<form method='POST' name='deleteClubForm'></form>
+{{!-- Restore form --}}
+<form method='POST' name='restoreClubForm'></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded',function(){ // Khi mà cái dom đã được tải xong hoàn toàn
+        var clubId;
+
+        var btnDelete = document.getElementById('btnDeleteClub');
+        var deleteForm = document.forms['deleteClubForm'];
+        var restoreForm = document.forms['restoreClubForm'];
+
+        var btnRestores = $('.btnRestoreClub');          // Lấy ra tất cả các nút Restore
+
+        // When dialog confirm clicked
+        $('#deleteClub').on('show.bs.modal', function(e){
+            var button = $(e.relatedTarget);
+            clubId = button.data('id') // Lấy ra id của clb được click
+        })
+
+        // When delete club btn clicked
+        btnDelete.onclick = function(){
+            // Set lại thuộc tính action của form
+            deleteForm.action = '/clubs/' + clubId + '/force?_method=DELETE';
+            // submit form
+            deleteForm.submit();
+        }
+
+        // When restore club btn clicked
+        btnRestores.click(function(e){
+          e.preventDefault();
+          var id = $(this).data('id');                                    // Lấy ra id của cái thằng mà chúng ta đang click
+          console.log(id);
+          restoreForm.action = '/clubs/' + id + '/restore?_method=PATCH'
+          restoreForm.submit();
+        })
+
+        // When force delete club btn clicked
+        btnForceDeletes.onclick = function(){
+          
+        }
+    })
+</script>

@@ -1,0 +1,55 @@
+// var http = require('http');
+// var file = require('fs');
+
+// var server = http.createServer(function(req,res){
+    // res.writeHead(200, {'ContentType': 'text/plain'}); //text/plain: file văn bản bthg như txt
+    // var doc_luong_du_lieu = file.createReadStream(__dirname + '/test.txt','utf8');
+    // // Trả về dữ liệu
+    // res.end('Chạy xong rồi');
+
+
+    // res.writeHead(200, {'ContentType': 'text/html'}); //text/html: file html  
+    // var doc_luong_du_lieu = file.createReadStream(__dirname + '/HTML/index.html');
+    // // Trả về dữ liệu
+    // doc_luong_du_lieu.pipe(res)
+
+    // res.writeHead(200, {'ContentType': 'application/json'});   
+    // var doi_tuong = {
+    //     ten: 'Trung Kiên',
+    //     tuoi: 21,
+    //     diaChi: 'TPHCM',
+    //     dienThoai: '0981284476',
+    // };
+    // // Trả về dữ liệu
+    // res.end(JSON.stringify(doi_tuong));
+
+//     console.log('Người dùng yêu cầu truy cập đường dẫn: ' + req.url);
+
+//     if(req.url === '/home' || req.url === '/'){
+//         res.writeHead(200, {ContentType: 'text/html'});
+//         file.createReadStream(__dirname + '/HTML/index.html','utf8').pipe(res);
+//     }
+//     else if(req.url === '/login'){
+//         res.writeHead(200, {ContentType: 'text/html'});
+//         file.createReadStream(__dirname + '/HTML/login.html','utf8').pipe(res);
+//     }
+//     else if(req.url === '/register'){
+//         res.writeHead(200, {ContentType: 'application/json'});
+//         var doi_tuong = {
+//             ten: 'Trung Kiên',
+//             tuoi: 21,
+//             diaChi: 'TPHCM',
+//             dienThoai: '0981284476',
+//         };
+//         res.end(JSON.stringify(doi_tuong));
+//     }
+//     else if(req.url === '/404'){
+//         res.writeHead(404, {ContentType: 'text/html'});
+//         file.createReadStream(__dirname + '/HTML/404.html','utf8').pipe(res);
+//     }
+// })
+
+// server.listen(9999, '127.0.0.1');
+// console.log('Server running on port 9999');
+
+//-----------------------------------------------------------------------------------------------------------------------------------------

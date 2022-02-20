@@ -1,0 +1,45 @@
+﻿++++++++++++++++++++++++++++++ Header ++++++++++++++++++++++++++++++
++ 3 loại Content-Type chính:
+- text/plain        => Hiển thị dữ liệu văn bản thông thường
+- text/html         => Hiển thị dữ liệu kiểu html
+- application/json  => Hiển thị dữ liệu kiểu json
++ X-Powered-By: Môi trường code của chúng ta
++ Các trạng thái khi gửi hoặc nhận về
+- 1xx: Những thông tin được chấp nhận trong quá trình thực hiện
+- 2xx: Những trạng thái chúng ta gửi lên server, được server trả về xác nhận thành công hoặc là đã được hiểu request của chúng ta gửi lên
+- 3xx: Những chuyển hướng mà chúng ta cần phải thực hiện những cái hành động bổ sung. Vd như lỗi 304
+- 4xx: Những lỗi liên quan đến code
+- 5xx: Những lỗi thường từ phía máy chủ
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++ Thực hành phương thức GET ++++++++++++++++
+/api/clubs/:id
+Nhận tham số thông qua: req.params.id
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++ Thực hành phương thức POST +++++++++++++++
+/api/clubs/add
+Nhận các thuộc tính của đối tượng thông qua: req.body.property
+const club = {
+    id: req.body.id,
+    name: req.body.name,
+}
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++ Thực hành phương thức PUT ++++++++++++++++
+/api/clubs/edit/:id
+Thay đổi các thuộc tính của đối tượng thông qua: req.body.property
+club.name = req.body.name,
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++ Cài đặt và sử dụng mongoDB ++++++++++++++++
+B1: Vào https://www.mongodb.com/ -> Đăng nhập (Sign In)
+B2: Vào Database Access -> Click ADD NEW DATABASE USER 
+B3: Điền username (project) và password (nguyentrungkien123456789) -> Click Add User
+-----------------------------------------------------------------------------------
+B4: Vào Network Access -> Click ADD IP ADDRESS -> Nhập 0.0.0.0/0 vào Access List Entry -> Confirm
+B5: Nó sẽ gửi 1 email về mail mà chúng ta đăng ký tài khoản mongoDB để thông báo và chúng ta phải vào mail đó Confirm
+B6: Vào Clusters -> Click CONNECT -> Chọn Connect using MongoDB Compass -> Chọn mục I Have MongoDB Compass -> Copy đoạn lệnh
+B7: Vào ứng dụng MongoDBCompass -> paste đoạn lệnh đó vào (thay username và password mà ta tạo vào) -> Click Connect
+B8: Thành công
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

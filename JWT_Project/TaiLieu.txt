@@ -1,0 +1,4 @@
++ Thêm  "type":"module" vào package.json (Giúp chúng ta có thể sử dụng các keyword như import)
+
++ Cài các thư viện cần thiết sau:
+  npm install --save-dev jsonwebtoken express dotenv nodemon

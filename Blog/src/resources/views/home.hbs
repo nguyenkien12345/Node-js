@@ -1,0 +1,23 @@
+<div class="mt-4">
+    <div class="row">
+
+        {{#each clubs}}
+        <div class="col-sm-6 col-lg-4">
+            <div class="card card-club-item">
+                <a href="/clubs/{{this.Slug}}">
+                    <img class="card-img-top" width="300px" height="300px" src={{this.Thumbnail}} alt={{this.Name}}>
+                </a>
+                <div class="card-body">
+                    <a href="/clubs/{{this.Slug}}">
+                        <h5 class="card-title">{{this.Name}}</h5>
+                    </a>
+                    <p class="card-text">{{this.Donors}}</p>
+                    <p class="card-text">{{this.Nickname}}</p>
+                    <a href="#" class="btn btn-primary">Go</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        
+    </div>
+</div>
